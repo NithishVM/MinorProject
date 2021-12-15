@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PlacementApp</string>
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Paste BOTH strings as required -->
+    <string name="back4app_app_id">HPTPn2UZODgCIsf7UMfGeCQa9lrBy9NKljU6WztF</string>
+    <string name="back4app_client_key">npMagEpe5vqlweQomim2eK4fXscI0eGTa9HSIf0M</string>
+</resources>
