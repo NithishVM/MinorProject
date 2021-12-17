@@ -4,15 +4,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+import java.lang.reflect.Field;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import com.parse.GetCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 public class MainActivity extends AppCompatActivity {
     ConstraintLayout constraintLayout;
@@ -22,11 +25,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        constraintLayout=findViewById(R.id.cLayout);
         editText1=findViewById(R.id.editTextTextPersonName);
         editText2 = findViewById(R.id.editTextTextPersonName2);
         button=findViewById(R.id.button);
-        //constraintLayout.setBackgroundColor(Color.YELLOW);
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId(getString(R.string.back4app_app_id))
                 // if defined
@@ -40,21 +41,50 @@ public class MainActivity extends AppCompatActivity {
                 ParseObject person = new ParseObject("Person");
                 String name1= editText1.getText().toString();
                 String pl=editText2.getText().toString();
-                int plf=Integer.parseInt(pl);
-                person.put("name",name1);
-                person.put("age", plf);
-                person.saveInBackground();
+                String ends_with= "@rvce.edu.in";
+                //int plf=Integer.parseInt(pl);
 
-                ParseQuery<ParseObject> query = ParseQuery.getQuery("Person");
-                query.getInBackground("mhPFDlCahj", new GetCallback<ParseObject>() {
-                    public void done(ParseObject object, ParseException e) {
-                        if (e == null) {
-                            // object will be your person
-                        } else {
-                            // something went wrong
+
+                if(name1.endsWith(ends_with)){
+                    ParseUser user=new ParseUser();
+                    user.setUsername(name1);
+                    user.setPassword(pl);
+                    user.signUpInBackground(new SignUpCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if(e != null)
+                            {
+                                ParseUser.logOut();
+                                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+                }
+
+//                if(name1.endsWith(ends_with))
+//                {
+//
+//                    person.put("name",name1);
+//                    person.put("age", plf);
+//                    person.saveInBackground();
+//
+//                    ParseQuery<ParseObject> query = ParseQuery.getQuery("Person");
+//                    query.getInBackground("mhPFDlCahj", new GetCallback<ParseObject>() {
+//                        public void done(ParseObject object, ParseException e) {
+//                            if (e == null) {
+//                                Toast.makeText(getApplicationContext(), "Login Unsuccessful", Toast.LENGTH_SHORT).show();
+//                            } else {
+//                                Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
+//                }
+                else {
+                    Toast.makeText(getApplicationContext(), "User Name is not in valid Format", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 //Reading your First Data Object from Back4App
