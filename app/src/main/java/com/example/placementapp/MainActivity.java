@@ -5,20 +5,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import java.lang.reflect.Field;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import com.parse.GetCallback;
+
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 public class MainActivity extends AppCompatActivity {
-    ConstraintLayout constraintLayout;
     EditText editText1,editText2;
     Button button;
     @Override
@@ -44,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
                 String ends_with= "@rvce.edu.in";
                 //int plf=Integer.parseInt(pl);
 
-
                 if(name1.endsWith(ends_with)){
                     ParseUser user=new ParseUser();
                     user.setUsername(name1);
@@ -63,30 +59,13 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
-
-//                if(name1.endsWith(ends_with))
-//                {
-//
-//                    person.put("name",name1);
-//                    person.put("age", plf);
-//                    person.saveInBackground();
-//
-//                    ParseQuery<ParseObject> query = ParseQuery.getQuery("Person");
-//                    query.getInBackground("mhPFDlCahj", new GetCallback<ParseObject>() {
-//                        public void done(ParseObject object, ParseException e) {
-//                            if (e == null) {
-//                                Toast.makeText(getApplicationContext(), "Login Unsuccessful", Toast.LENGTH_SHORT).show();
-//                            } else {
-//                                Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//                }
                 else {
                     Toast.makeText(getApplicationContext(), "User Name is not in valid Format", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+
 //Reading your First Data Object from Back4App
     }
 }
