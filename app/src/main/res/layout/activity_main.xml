@@ -24,7 +24,7 @@
     <EditText
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="264dp"
-        android:layout_height="43dp"
+        android:layout_height="48dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPersonName"
