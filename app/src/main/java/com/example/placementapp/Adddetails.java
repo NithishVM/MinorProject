@@ -1,85 +1,78 @@
 package com.example.placementapp;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.Nullable;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class Adddetails extends AppCompatActivity {
-
-
-    // creating variables for
-    // EditText and buttons.
     private EditText ctc,role,sname,cname;
     private Button sendDatabtn;
-
-    // creating a variable for our
-    // Firebase Database.
     FirebaseDatabase firebaseDatabase;
-
-    // creating a variable for our Database
-    // Reference for Firebase.
     DatabaseReference databaseReference;
-
-    // creating a variable for
-    // our object class
     StudentDetails employeeInfo;
+    ImageView upload;
+    Uri imageuri = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adddetails);
 
-        // initializing our edittext and button
+        upload = findViewById(R.id.imageButton);
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent galleryIntent = new Intent();
+                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+                galleryIntent.setType("application/pdf");
+                startActivityForResult(galleryIntent, 1);
+            }
+        });
+
         ctc = findViewById(R.id.ctc);
         cname = findViewById(R.id.cname);
         sname = findViewById(R.id.stud_name);
         role= findViewById(R.id.role);
 
-        // below line is used to get the
-        // instance of our FIrebase database.
         firebaseDatabase = FirebaseDatabase.getInstance();
-
-        // below line is used to get reference for our database.
         databaseReference = firebaseDatabase.getReference("StudentDetails");
-
-        // initializing our object
-        // class variable.
         employeeInfo = new StudentDetails();
 
         sendDatabtn = findViewById(R.id.addata);
-
-        // adding on click listener for our button.
         sendDatabtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                // getting text from our edittext fields.
                 String name = sname.getText().toString();
                 String companyname = cname.getText().toString();
                 String ctcomp = ctc.getText().toString();
                 String rol= role.getText().toString();
-
-                // below line is for checking weather the
-                // edittext fields are empty or not.
                 if (TextUtils.isEmpty(name) && TextUtils.isEmpty(name) && TextUtils.isEmpty(ctcomp)) {
-                    // if the text fields are empty
-                    // then show the below message.
                     Toast.makeText(Adddetails.this, "Please add some data.", Toast.LENGTH_SHORT).show();
-                } else {
-                    // else call the method to add
-                    // data to our database.
+                }
+                else {
                     addDatatoFirebase(name, companyname,ctcomp,rol);
                 }
             }
@@ -87,33 +80,69 @@ public class Adddetails extends AppCompatActivity {
     }
 
     private void addDatatoFirebase(String name, String cname, String ctc, String role) {
-        // below 3 lines of code is used to set
-        // data in our object class.
         employeeInfo.setSname(name);
         employeeInfo.setCname(cname);
         employeeInfo.setCtc(ctc);
         employeeInfo.setRole(role);
-
-        // we are use add value event listener method
-        // which is called with database reference.
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // inside the method of on Data change we are setting
-                // our object class to our database reference.
-                // data base reference will sends data to firebase.
-                databaseReference.setValue(employeeInfo);
-
-                // after adding this data we are showing toast message.
-                Toast.makeText(Adddetails.this, "data added", Toast.LENGTH_SHORT).show();
+                databaseReference.push().setValue(employeeInfo);
+                Toast.makeText(Adddetails.this, "Data added to Database", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // if the data is not added or it is cancelled then
-                // we are displaying a failure toast message.
                 Toast.makeText(Adddetails.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    ProgressDialog dialog;
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            // Here we are initialising the progress dialog box
+            dialog = new ProgressDialog(this);
+            dialog.setMessage("Uploading");
+            // this will show message uploading
+            // while pdf is uploading
+            dialog.show();
+            imageuri = data.getData();
+            final String timestamp = "" + System.currentTimeMillis();
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+            final String messagePushID = timestamp;
+            Toast.makeText(Adddetails.this, imageuri.toString(), Toast.LENGTH_SHORT).show();
+
+            // Here we are uploading the pdf in firebase storage with the name of current time
+            final StorageReference filepath = storageReference.child(messagePushID + "." + "pdf");
+            Toast.makeText(Adddetails.this, filepath.getName(), Toast.LENGTH_SHORT).show();
+            filepath.putFile(imageuri).continueWithTask(new Continuation() {
+                @Override
+                public Object then(@NonNull Task task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+                    return filepath.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        // After uploading is done it progress
+                        // dialog box will be dismissed
+                        dialog.dismiss();
+                        Uri uri = task.getResult();
+                        String myurl;
+                        myurl = uri.toString();
+                        Toast.makeText(Adddetails.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
+                    } else {
+                        dialog.dismiss();
+                        Toast.makeText(Adddetails.this, "UploadedFailed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 }
