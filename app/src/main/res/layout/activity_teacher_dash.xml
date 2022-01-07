@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="30dp"
-                android:text="  Dashboard"
+                android:text="Department Dashboard"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="24sp"
@@ -89,6 +89,8 @@
                     android:layout_gravity="right|bottom"
                     android:layout_marginRight="15dp"
                     android:layout_marginBottom="20dp"
+                    android:clickable="true"
+                    android:onClick="addpd"
                     android:text="clickhere"
                     android:textColor="@color/black" />
 
@@ -150,7 +152,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginBottom="20dp"
                     android:clickable="true"
-                    android:onClick="faculty"
+                    android:onClick="viewpd"
                     android:text="clickhere"
                     android:textColor="@color/black" />
 

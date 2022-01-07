@@ -23,6 +23,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlacementApp">
         <activity
+            android:name=".Adddetails"
+            android:exported="false" />
+        <activity
+            android:name=".Teachview"
+            android:exported="false" />
+        <activity
             android:name=".TeacherDash"
             android:exported="false" />
         <activity
