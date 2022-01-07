@@ -10,14 +10,19 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.parse.Parse;
+import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     EditText editText1,editText2;
-    Button button;
+    Button button,button2;
 
     String teacher[]={"andhedharani@rvce.edu.in","vijayalakshmi@rvce.edu.in","deepikak@rvce.edu.in"};
     String student[]={"nithishvm.mca20@rvce.edu.in","vidyaaradhya.mca20@rvce.edu.in"};
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         editText1=findViewById(R.id.editTextTextPersonName);
         editText2 = findViewById(R.id.editTextTextPersonName2);
-        button=findViewById(R.id.button);
+        button=findViewById(R.id.login);
+        button2=findViewById(R.id.signup);
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId(getString(R.string.back4app_app_id))
                 .clientKey(getString(R.string.back4app_client_key))
@@ -42,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 ParseUser.logInInBackground(name1, pl, (user, e) -> {
                     if(user != null)
                     {
-                        Toast.makeText(MainActivity.this, "Welcome"+name1+"To the App", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Welcome "+name1+"To the App", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(MainActivity.this,TeacherDash.class);
                         startActivity(intent);
                         finish();
@@ -51,27 +57,42 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-//                if(name1.endsWith(ends_with)){
-//                    ParseUser user=new ParseUser();
-//                    user.setUsername(name1);
-//                    user.setPassword(pl);
-//                    user.signUpInBackground(new SignUpCallback() {
-//                        @Override
-//                        public void done(ParseException e) {
-//                            if(e != null)
-//                            {
-//                                ParseUser.logOut();
-//                                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                            else{
-//                                Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//                }
-//                else {
-//                    Toast.makeText(getApplicationContext(), "User Name is not in valid Format", Toast.LENGTH_SHORT).show();
-//                }
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name1= editText1.getText().toString();
+                String pl=editText2.getText().toString();
+                if(Arrays.asList(teacher).contains(name1) || Arrays.asList(student).contains(name1)){
+                    ParseUser user=new ParseUser();
+                    user.setUsername(name1);
+                    user.setPassword(pl);
+                    user.setEmail(name1);
+                    user.signUpInBackground(new SignUpCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if(e != null)
+                            {
+                                ParseUser.logOut();
+                                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                if (Arrays.asList(student).contains(name1)) {
+                                    Toast.makeText(MainActivity.this, "Successfully Signed Up as Student", Toast.LENGTH_SHORT).show();
+                                }
+                                else if(Arrays.asList(teacher).contains(name1))
+                                {
+                                    Toast.makeText(MainActivity.this, "Successfully Signed Up as Teacher", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                    });
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "User Name is not in Given Database", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

@@ -15,6 +15,8 @@
         android:name="com.parse.CLIENT_KEY"
         android:value="@string/back4app_client_key" />
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

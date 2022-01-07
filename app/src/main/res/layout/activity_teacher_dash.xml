@@ -140,7 +140,7 @@
                     android:layout_marginLeft="110dp"
                     android:layout_marginTop="45dp"
                     android:layout_marginBottom="20dp"
-                    android:text="Know informations about all Lecturers"
+                    android:text="View the Placement Data of Students"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -152,7 +152,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginBottom="20dp"
                     android:clickable="true"
-                    android:onClick="viewpd"
+                    android:onClick="visewpd"
                     android:text="clickhere"
                     android:textColor="@color/black" />
 
@@ -201,7 +201,7 @@
                     android:layout_marginLeft="110dp"
                     android:layout_marginTop="45dp"
                     android:layout_marginBottom="20dp"
-                    android:text="Make announcements to notify changes in timetable"
+                    android:text="Edit Placement Data of the Students"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
