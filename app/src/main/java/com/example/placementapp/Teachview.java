@@ -1,6 +1,9 @@
 package com.example.placementapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -20,6 +23,9 @@ import java.util.Arrays;
 public class Teachview extends AppCompatActivity {
 
     ListView listView;
+    ArrayList<String> names;
+    ArrayList<String> list;
+    ArrayList<String> name_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,32 +33,66 @@ public class Teachview extends AppCompatActivity {
         setContentView(R.layout.activity_teachview);
         listView = findViewById(R.id.listview);
 
-        ArrayList<String> list = new ArrayList<>();
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+        list = new ArrayList<>();
+        name_list = new ArrayList<>();
+        names = new ArrayList<>();
 
-        listView.setAdapter(adapter);
-        ArrayList sl= new ArrayList<>(Arrays.asList("Hello","Hi","New York"));
+        DatabaseReference referencen = FirebaseDatabase.getInstance().getReference("StudentDetails");
 
-        for (int i = 0; i < sl.size(); i++) {
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StudentDetails").child(Arrays.asList(sl).toString());
+        referencen.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snaps : snapshot.getChildren()) {
+                        name_list.add(snaps.getKey());
+                }
 
-            reference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                        if (snapshot1.getKey().equalsIgnoreCase("sname")) {
-                            Toast.makeText(getApplicationContext(), snapshot1.getKey(), Toast.LENGTH_SHORT).show();
-                            list.add(snapshot1.getValue().toString());
+                System.out.println("----------------------------------------=>"+name_list);
+                getInData();
+                names=name_list;
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getBaseContext(), Vieweach.class);
+                String testAd= adapterView.getItemAtPosition(i).toString();
+                intent.putExtra("stud_name", testAd);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Clicked on "+testAd,Toast.LENGTH_SHORT).show();
+            }
+        });
+        }
+
+        public  void  getInData()
+        {
+            ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+            listView.setAdapter(adapter);
+            for(int i=0;i< name_list.size(); i++) {
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StudentDetails").child(name_list.get(i));
+                System.out.println("----------------------------------------||||||||||||||=>"+name_list.get(i));
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                            {
+                                if(snapshot1.getKey().equalsIgnoreCase("sname"))
+                                list.add(snapshot1.getValue().toString());
+                            }
+
                         }
-
+                        adapter.notifyDataSetChanged();
                     }
-                    adapter.notifyDataSetChanged();
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                }
-            });
-//        }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
+            }
         }
     }
-}

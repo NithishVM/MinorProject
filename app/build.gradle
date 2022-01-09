@@ -69,4 +69,5 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.3.0')
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.android.gms:play-services-auth:20.0.1'
+    implementation 'com.github.barteksc:android-pdf-viewer:2.0.3'
 }

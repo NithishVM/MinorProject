@@ -20,7 +20,8 @@
         <entry key="app/src/main/res/layout/activity_app.xml" value="0.31431159420289856" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_teacher_dash.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_teachview.xml" value="0.19299237072619385" />
+        <entry key="app/src/main/res/layout/activity_teachview.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_vieweach.xml" value="0.2484375" />
         <entry key="app/src/main/res/layout/activity_viewteach.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/menu/menu_viewteach.xml" value="0.19791666666666666" />
