@@ -1,7 +1,7 @@
 package com.example.placementapp;
 
 public class StudentDetails {
-    private String Sname,ctc,cname,role,urlid;
+    private String aname,ctc,cname,role,urlid;
 
     public String getUrlid() {
         return urlid;
@@ -12,7 +12,7 @@ public class StudentDetails {
     }
 
     public String getSname() {
-        return Sname;
+        return aname;
     }
 
     public String getCtc() {
@@ -40,6 +40,6 @@ public class StudentDetails {
     }
 
     public void setSname(String sname) {
-        Sname = sname;
+        aname = sname;
     }
 }

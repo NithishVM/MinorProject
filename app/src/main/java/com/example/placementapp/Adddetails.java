@@ -38,7 +38,7 @@ public class Adddetails extends AppCompatActivity {
     Uri imageuri = null;
     Uri fyi;
     String uriuseable;
-    String getpdfuri;
+    ProgressDialog dialogr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +74,6 @@ public class Adddetails extends AppCompatActivity {
                 String companyname = cname.getText().toString();
                 String ctcomp = ctc.getText().toString();
                 String rol = role.getText().toString();
-                String urli = uriuseable;
                 if (TextUtils.isEmpty(name) && TextUtils.isEmpty(name) && TextUtils.isEmpty(ctcomp)) {
                     Toast.makeText(Adddetails.this, "Please add some data.", Toast.LENGTH_SHORT).show();
                 } else {
@@ -95,7 +94,7 @@ public class Adddetails extends AppCompatActivity {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                databaseReference.push().setValue(employeeInfo);
+                databaseReference.child(name).setValue(employeeInfo);
                 Toast.makeText(Adddetails.this, "Data added to Database", Toast.LENGTH_SHORT).show();
             }
 
