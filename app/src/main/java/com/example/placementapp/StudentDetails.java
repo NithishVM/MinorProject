@@ -1,7 +1,15 @@
 package com.example.placementapp;
 
 public class StudentDetails {
-    private String Sname,ctc,cname,role;
+    private String Sname,ctc,cname,role,urlid;
+
+    public String getUrlid() {
+        return urlid;
+    }
+
+    public void setUrlid(String urlid) {
+        this.urlid = urlid;
+    }
 
     public String getSname() {
         return Sname;

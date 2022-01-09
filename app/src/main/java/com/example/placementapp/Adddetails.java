@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,13 +28,17 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 public class Adddetails extends AppCompatActivity {
-    private EditText ctc,role,sname,cname;
+    private EditText ctc, role, sname, cname;
     private Button sendDatabtn;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    DatabaseReference root= FirebaseDatabase.getInstance().getReference();
     StudentDetails employeeInfo;
     ImageView upload;
     Uri imageuri = null;
+    Uri fyi;
+    String uriuseable;
+    String getpdfuri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +59,7 @@ public class Adddetails extends AppCompatActivity {
         ctc = findViewById(R.id.ctc);
         cname = findViewById(R.id.cname);
         sname = findViewById(R.id.stud_name);
-        role= findViewById(R.id.role);
+        role = findViewById(R.id.role);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("StudentDetails");
@@ -68,22 +73,25 @@ public class Adddetails extends AppCompatActivity {
                 String name = sname.getText().toString();
                 String companyname = cname.getText().toString();
                 String ctcomp = ctc.getText().toString();
-                String rol= role.getText().toString();
+                String rol = role.getText().toString();
+                String urli = uriuseable;
                 if (TextUtils.isEmpty(name) && TextUtils.isEmpty(name) && TextUtils.isEmpty(ctcomp)) {
                     Toast.makeText(Adddetails.this, "Please add some data.", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    addDatatoFirebase(name, companyname,ctcomp,rol);
+                } else {
+                    addDatatoFirebase(name, companyname, ctcomp, rol,fyi);
                 }
             }
         });
     }
 
-    private void addDatatoFirebase(String name, String cname, String ctc, String role) {
+    private void addDatatoFirebase(String name, String cname, String ctc, String role, Uri getp) {
         employeeInfo.setSname(name);
         employeeInfo.setCname(cname);
         employeeInfo.setCtc(ctc);
         employeeInfo.setRole(role);
+        employeeInfo.setUrlid(getp.toString());
+
+
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -99,15 +107,14 @@ public class Adddetails extends AppCompatActivity {
     }
 
     ProgressDialog dialog;
+
     @Override
-    protected void onActivityResult(int requestCode,int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            // Here we are initialising the progress dialog box
             dialog = new ProgressDialog(this);
             dialog.setMessage("Uploading");
-            // this will show message uploading
-            // while pdf is uploading
+
             dialog.show();
             imageuri = data.getData();
             final String timestamp = "" + System.currentTimeMillis();
@@ -115,7 +122,7 @@ public class Adddetails extends AppCompatActivity {
             final String messagePushID = timestamp;
             Toast.makeText(Adddetails.this, imageuri.toString(), Toast.LENGTH_SHORT).show();
 
-            // Here we are uploading the pdf in firebase storage with the name of current time
+//     Here we are uploading the pdf in firebase storage with the name of current time
             final StorageReference filepath = storageReference.child(messagePushID + "." + "pdf");
             Toast.makeText(Adddetails.this, filepath.getName(), Toast.LENGTH_SHORT).show();
             filepath.putFile(imageuri).continueWithTask(new Continuation() {
@@ -126,23 +133,26 @@ public class Adddetails extends AppCompatActivity {
                     }
                     return filepath.getDownloadUrl();
                 }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()) {
-                        // After uploading is done it progress
-                        // dialog box will be dismissed
-                        dialog.dismiss();
-                        Uri uri = task.getResult();
-                        String myurl;
-                        myurl = uri.toString();
-                        Toast.makeText(Adddetails.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
-                    } else {
-                        dialog.dismiss();
-                        Toast.makeText(Adddetails.this, "UploadedFailed", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+            })
+                    .addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if (task.isSuccessful()) {
+                                dialog.dismiss();
+                                Toast.makeText(Adddetails.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
+
+                                filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        fyi=uri;
+                                    }
+                                });
+                            } else {
+                                dialog.dismiss();
+                                Toast.makeText(Adddetails.this, "UploadedFailed", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
         }
     }
 }
