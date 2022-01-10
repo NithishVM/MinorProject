@@ -22,7 +22,6 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -69,5 +68,5 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.3.0')
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.android.gms:play-services-auth:20.0.1'
-    implementation 'com.github.barteksc:android-pdf-viewer:2.0.3'
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 }

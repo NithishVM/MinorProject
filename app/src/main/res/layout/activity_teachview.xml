@@ -11,18 +11,20 @@
         android:id="@+id/textView3"
         android:layout_width="201dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="600dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="640dp"
         android:gravity="center"
         android:text="Placement Data"
+        android:textAppearance="?android:listPreferredItemHeight"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ListView
         android:id="@+id/listview"
-        android:layout_width="377dp"
-        android:layout_height="5319dp"
+        android:layout_width="396dp"
+        android:layout_height="5314dp"
+        android:paddingLeft="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 

@@ -7,22 +7,78 @@
     tools:context=".Vieweach">
 
     <TextView
-        android:id="@+id/datatext"
-        android:layout_width="148dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="124dp"
-        android:layout_marginEnd="132dp"
-        android:text="TextView"
+        android:id="@+id/Heading"
+        android:layout_width="286dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="60dp"
+        android:gravity="center"
+        android:text="Student Details"
+        android:textColor="@color/black"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/datatext"
+        android:layout_width="225dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="92dp"
+        android:text="TextView"
+        android:textSize="34sp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/datatext2"
+        android:layout_width="225dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="216dp"
+        android:layout_marginEnd="92dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/datatext3"
+        android:layout_width="225dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="304dp"
+        android:layout_marginEnd="92dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/datatext4"
+        android:layout_width="225dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="388dp"
+        android:layout_marginEnd="92dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:clickable="true"
+        android:onClick="pdfMeth"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="176dp"
-        android:layout_marginBottom="224dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginTop="500dp"
+        android:layout_marginEnd="156dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

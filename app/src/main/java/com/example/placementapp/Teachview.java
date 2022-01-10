@@ -1,8 +1,12 @@
 package com.example.placementapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -31,6 +35,15 @@ public class Teachview extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teachview);
+        ProgressDialog load= new ProgressDialog(this);
+        load.setMessage("Loading");
+        load.show();
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                load.dismiss();
+            }
+        }, 3000);
         listView = findViewById(R.id.listview);
 
         list = new ArrayList<>();
@@ -45,8 +58,6 @@ public class Teachview extends AppCompatActivity {
                 for (DataSnapshot snaps : snapshot.getChildren()) {
                         name_list.add(snaps.getKey());
                 }
-
-                System.out.println("----------------------------------------=>"+name_list);
                 getInData();
                 names=name_list;
             }
@@ -75,7 +86,6 @@ public class Teachview extends AppCompatActivity {
             listView.setAdapter(adapter);
             for(int i=0;i< name_list.size(); i++) {
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StudentDetails").child(name_list.get(i));
-                System.out.println("----------------------------------------||||||||||||||=>"+name_list.get(i));
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

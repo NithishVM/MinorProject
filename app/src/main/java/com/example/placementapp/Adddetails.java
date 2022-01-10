@@ -27,6 +27,9 @@ import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 public class Adddetails extends AppCompatActivity {
     private EditText ctc, role, sname, cname;
     private Button sendDatabtn;
@@ -113,16 +116,17 @@ public class Adddetails extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             dialog = new ProgressDialog(this);
             dialog.setMessage("Uploading");
-
             dialog.show();
             imageuri = data.getData();
+            Date date=new Date();
+            final String dateConverted=date.toString();
             final String timestamp = "" + System.currentTimeMillis();
             StorageReference storageReference = FirebaseStorage.getInstance().getReference();
             final String messagePushID = timestamp;
             Toast.makeText(Adddetails.this, imageuri.toString(), Toast.LENGTH_SHORT).show();
 
 //     Here we are uploading the pdf in firebase storage with the name of current time
-            final StorageReference filepath = storageReference.child(messagePushID + "." + "pdf");
+            final StorageReference filepath = storageReference.child(dateConverted + "." + "pdf");
             Toast.makeText(Adddetails.this, filepath.getName(), Toast.LENGTH_SHORT).show();
             filepath.putFile(imageuri).continueWithTask(new Continuation() {
                 @Override
@@ -139,7 +143,6 @@ public class Adddetails extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 dialog.dismiss();
                                 Toast.makeText(Adddetails.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
-
                                 filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
