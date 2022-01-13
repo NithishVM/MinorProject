@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -77,10 +78,13 @@ public class Adddetails extends AppCompatActivity {
                 String companyname = cname.getText().toString();
                 String ctcomp = ctc.getText().toString();
                 String rol = role.getText().toString();
-                if (TextUtils.isEmpty(name) && TextUtils.isEmpty(name) && TextUtils.isEmpty(ctcomp)) {
+                if (TextUtils.isEmpty(name) && TextUtils.isEmpty(companyname) && TextUtils.isEmpty(ctcomp) && TextUtils.isEmpty(rol)) {
+                    if(TextUtils.isEmpty(fyi.toString())) {
+                        Toast.makeText(Adddetails.this, "Please Select a PDF File", Toast.LENGTH_SHORT).show();
+                    }
                     Toast.makeText(Adddetails.this, "Please add some data.", Toast.LENGTH_SHORT).show();
                 } else {
-                    addDatatoFirebase(name, companyname, ctcomp, rol,fyi);
+                    addDatatoFirebase(name, companyname, ctcomp, rol, fyi);
                 }
             }
         });
@@ -91,15 +95,33 @@ public class Adddetails extends AppCompatActivity {
         employeeInfo.setCname(cname);
         employeeInfo.setCtc(ctc);
         employeeInfo.setRole(role);
-        employeeInfo.setUrlid(getp.toString());
+        try {
+            employeeInfo.setUrlid(getp.toString());
+        }
+        catch (Exception e)
+        {
+
+        }
 
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                databaseReference.child(name).setValue(employeeInfo);
-                Toast.makeText(Adddetails.this, "Data added to Database", Toast.LENGTH_SHORT).show();
+                if (name.isEmpty() || cname.isEmpty() || ctc.isEmpty() || role.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please add all the Fields", Toast.LENGTH_SHORT).show();
+                }
+                else if(getp == null )
+                {
+
+                    Toast.makeText(getApplicationContext(), "Please Add PDF File", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    databaseReference.child(name).setValue(employeeInfo);
+                    Toast.makeText(Adddetails.this, "Data added to Database", Toast.LENGTH_SHORT).show();
+
+                }
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -123,7 +145,7 @@ public class Adddetails extends AppCompatActivity {
             final String timestamp = "" + System.currentTimeMillis();
             StorageReference storageReference = FirebaseStorage.getInstance().getReference();
             final String messagePushID = timestamp;
-            Toast.makeText(Adddetails.this, imageuri.toString(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(Adddetails.this, imageuri.toString(), Toast.LENGTH_SHORT).show();
 
 //     Here we are uploading the pdf in firebase storage with the name of current time
             final StorageReference filepath = storageReference.child(dateConverted + "." + "pdf");
@@ -151,7 +173,7 @@ public class Adddetails extends AppCompatActivity {
                                 });
                             } else {
                                 dialog.dismiss();
-                                Toast.makeText(Adddetails.this, "UploadedFailed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Adddetails.this, "Upload Failed", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

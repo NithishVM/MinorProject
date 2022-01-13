@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
     Button button,button2;
 
     String teacher[]={"andhedharani@rvce.edu.in","vijayalakshmi@rvce.edu.in","deepikak@rvce.edu.in"};
-    String student[]={"nithishvm.mca20@rvce.edu.in","vidyaaradhya.mca20@rvce.edu.in"};
-    
+    String student[]={"nithishvm.mca20@rvce.edu.in","vidyaaradhya.mca20@rvce.edu.in","teststudent@rvce.edu.in"};
+    String up[]={"rajath.mca20@rvce.edu.in"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 .server(getString(R.string.back4app_server_url))
                 .build()
         );
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,10 +49,17 @@ public class MainActivity extends AppCompatActivity {
                 ParseUser.logInInBackground(name1, pl, (user, e) -> {
                     if(user != null)
                     {
+                        if(Arrays.asList(teacher).contains(name1) || Arrays.asList(student).contains(name1)){
                         Toast.makeText(MainActivity.this, "Welcome "+name1+"To the App", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(MainActivity.this,TeacherDash.class);
                         startActivity(intent);
-                        finish();
+                        finish();}
+                        else if(Arrays.asList(up).contains(name1) )
+                        {
+                            Intent intent=new Intent(MainActivity.this,UnplacedDash.class);
+                            startActivity(intent);
+                            finish();
+                        }
                     }
                     else{
                         Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -65,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String name1= editText1.getText().toString();
                 String pl=editText2.getText().toString();
-                if(Arrays.asList(teacher).contains(name1) || Arrays.asList(student).contains(name1)){
+                if(Arrays.asList(teacher).contains(name1) || Arrays.asList(student).contains(name1) ||  Arrays.asList(up).contains(name1)){
                     ParseUser user=new ParseUser();
                     user.setUsername(name1);
                     user.setPassword(pl);

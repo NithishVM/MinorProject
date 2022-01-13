@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bg"
+    android:background="@drawable/gray_background"
     tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/editTextTextPersonName"
         android:layout_width="266dp"
-        android:layout_height="68dp"
+        android:layout_height="55dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:gravity="center"
@@ -27,7 +27,7 @@
     <EditText
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="266dp"
-        android:layout_height="68dp"
+        android:layout_height="55dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:gravity="center"
@@ -40,7 +40,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.573" />
+        app:layout_constraintVertical_bias="0.528" />
 
     <Button
         android:id="@+id/login"
@@ -68,13 +68,14 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="382dp"
-        android:layout_height="214dp"
+        android:layout_width="352dp"
+        android:layout_height="187dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.029"
         app:srcCompat="@drawable/studicon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

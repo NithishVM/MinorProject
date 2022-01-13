@@ -43,19 +43,15 @@ public class Vieweach extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                     if (snapshot1.getKey().equalsIgnoreCase("sname")) {
-                        Toast.makeText(getApplicationContext(), snapshot1.getKey(), Toast.LENGTH_SHORT).show();
                         text1.setText(snapshot1.getValue().toString());
                     }
                     if (snapshot1.getKey().equalsIgnoreCase("cname")) {
-                        Toast.makeText(getApplicationContext(), snapshot1.getKey(), Toast.LENGTH_SHORT).show();
                         t2.setText(snapshot1.getValue().toString());
                     }
                     if (snapshot1.getKey().equalsIgnoreCase("ctc")) {
-                        Toast.makeText(getApplicationContext(), snapshot1.getKey(), Toast.LENGTH_SHORT).show();
-                        t3.setText(snapshot1.getValue().toString());
+                        t3.setText(snapshot1.getValue().toString()+ " INR");
                     }
                     if (snapshot1.getKey().equalsIgnoreCase("role")) {
-                        Toast.makeText(getApplicationContext(), snapshot1.getKey(), Toast.LENGTH_SHORT).show();
                         t4.setText(snapshot1.getValue().toString());
                     }
                     if(snapshot1.getKey().equalsIgnoreCase("urlid")){
