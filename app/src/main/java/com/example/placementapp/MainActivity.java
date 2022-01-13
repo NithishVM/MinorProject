@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editText1,editText2;
     Button button,button2;
 
-    String teacher[]={"andhedharani@rvce.edu.in","vijayalakshmi@rvce.edu.in","deepikak@rvce.edu.in"};
+    String teacher[]={"andhedharani@rvce.edu.in","vijayalakshmi@rvce.edu.in","deepikak@rvce.edu.in","lp"};
     String student[]={"nithishvm.mca20@rvce.edu.in","vidyaaradhya.mca20@rvce.edu.in","teststudent@rvce.edu.in"};
     String up[]={"rajath.mca20@rvce.edu.in"};
 

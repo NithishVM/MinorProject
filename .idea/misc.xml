@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/drawable/rounded_edittext.xml" value="0.29907407407407405" />
         <entry key="app/src/main/res/drawable/sh_notification.xml" value="0.29907407407407405" />
         <entry key="app/src/main/res/layout/activity_adddetails.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/activity_admin_settings.xml" value="0.29393115942028986" />
         <entry key="app/src/main/res/layout/activity_app.xml" value="0.31431159420289856" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_pdfactivity.xml" value="0.25" />
