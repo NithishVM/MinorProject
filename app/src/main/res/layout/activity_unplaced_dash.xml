@@ -24,7 +24,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/shcardimg2"
             android:layout_width="92dp"
             android:layout_height="102dp"
             android:layout_gravity="left"
