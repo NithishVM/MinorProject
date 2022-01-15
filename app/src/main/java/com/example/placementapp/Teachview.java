@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -45,7 +47,6 @@ public class Teachview extends AppCompatActivity {
             }
         }, 3000);
         listView = findViewById(R.id.listview);
-
         list = new ArrayList<>();
         name_list = new ArrayList<>();
         names = new ArrayList<>();
@@ -56,7 +57,7 @@ public class Teachview extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snaps : snapshot.getChildren()) {
-                        name_list.add(snaps.getKey());
+                    name_list.add(snaps.getKey());
                 }
                 getInData();
                 names=name_list;
@@ -78,31 +79,31 @@ public class Teachview extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Clicked on "+testAd,Toast.LENGTH_SHORT).show();
             }
         });
-        }
+    }
 
-        public  void  getInData()
-        {
-            ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
-            listView.setAdapter(adapter);
-            for(int i=0;i< name_list.size(); i++) {
-                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StudentDetails").child(name_list.get(i));
-                reference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                            {
-                                if(snapshot1.getKey().equalsIgnoreCase("sname"))
+    public  void  getInData()
+    {
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+        listView.setAdapter(adapter);
+        for(int i=0;i< name_list.size(); i++) {
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StudentDetails").child(name_list.get(i));
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                        {
+                            if(snapshot1.getKey().equalsIgnoreCase("sname"))
                                 list.add(snapshot1.getValue().toString());
-                            }
-
                         }
-                        adapter.notifyDataSetChanged();
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
                     }
-                });
-            }
+                    adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
         }
     }
+}

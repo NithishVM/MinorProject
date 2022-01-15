@@ -28,30 +28,47 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlacementApp">
         <activity
+            android:name=".Addplaced"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".Addunplaced"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".AdminSettings"
+            android:exported="true">
+
+        </activity>
+        <activity
             android:name=".UnplacedDash"
             android:exported="false" />
         <activity
             android:name=".Pdfactivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Vieweach"
             android:exported="true" />
         <activity
             android:name=".Teachview"
-            android:exported="true"></activity>
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".Adddetails"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".TeacherDash"
             android:exported="true">
+
         </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

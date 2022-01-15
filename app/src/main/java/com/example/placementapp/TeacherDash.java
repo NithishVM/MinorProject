@@ -23,5 +23,9 @@ public class TeacherDash extends AppCompatActivity {
         Intent addview=new Intent(getApplicationContext(),Adddetails.class);
         startActivity(addview);
     }
-
+    public void settingAdmin(View view)
+    {
+        Intent addview=new Intent(getApplicationContext(),AdminSettings.class);
+        startActivity(addview);
+    }
 }

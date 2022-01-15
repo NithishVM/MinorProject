@@ -18,7 +18,6 @@ import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +27,6 @@ import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 public class Adddetails extends AppCompatActivity {
@@ -60,10 +58,10 @@ public class Adddetails extends AppCompatActivity {
             }
         });
 
-        ctc = findViewById(R.id.ctc);
-        cname = findViewById(R.id.cname);
-        sname = findViewById(R.id.stud_name);
-        role = findViewById(R.id.role);
+        ctc = findViewById(R.id.phone_p);
+        cname = findViewById(R.id.email_p);
+        sname = findViewById(R.id.stud_name_p);
+        role = findViewById(R.id.branch_p);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("StudentDetails");
