@@ -26,12 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.parse.Parse;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.SaveCallback;
-
-import java.util.Date;
 
 public class Adddetails extends AppCompatActivity {
     private EditText ctc, role, sname, cname;
@@ -43,19 +37,13 @@ public class Adddetails extends AppCompatActivity {
     ImageView upload;
     Uri imageuri = null;
     Uri fyi;
-    String urlParse;
+    String uriuseable;
+    ProgressDialog dialogr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adddetails);
-
-        Parse.initialize(new Parse.Configuration.Builder(this)
-                .applicationId(getString(R.string.back4app_app_id))
-                .clientKey(getString(R.string.back4app_client_key))
-                .server(getString(R.string.back4app_server_url))
-                .build()
-        );
 
         upload = findViewById(R.id.imageButton);
         upload.setOnClickListener(new View.OnClickListener() {
@@ -68,10 +56,10 @@ public class Adddetails extends AppCompatActivity {
             }
         });
 
-        ctc = findViewById(R.id.phone_p);
-        cname = findViewById(R.id.email_p);
-        sname = findViewById(R.id.stud_name_p);
-        role = findViewById(R.id.branch_p);
+        ctc = findViewById(R.id.ctc);
+        cname = findViewById(R.id.cname);
+        sname = findViewById(R.id.stud_name);
+        role = findViewById(R.id.role);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("StudentDetails");
@@ -81,51 +69,60 @@ public class Adddetails extends AppCompatActivity {
         sendDatabtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String name = sname.getText().toString();
                 String companyname = cname.getText().toString();
                 String ctcomp = ctc.getText().toString();
                 String rol = role.getText().toString();
-                if (TextUtils.isEmpty(name) && TextUtils.isEmpty(companyname) && TextUtils.isEmpty(ctcomp) && TextUtils.isEmpty(rol)) {
-                    if(TextUtils.isEmpty(fyi.toString())) {
-                        Toast.makeText(Adddetails.this, "Please Select a PDF File", Toast.LENGTH_SHORT).show();
-                    }
+                if (TextUtils.isEmpty(name) && TextUtils.isEmpty(name) && TextUtils.isEmpty(ctcomp)) {
                     Toast.makeText(Adddetails.this, "Please add some data.", Toast.LENGTH_SHORT).show();
-
-                    }
-                else {
-                        //addDatatoFirebase(name, companyname, ctcomp, rol, fyi);
-//                        Toast.makeText(Adddetails.this, fyi.toString(), Toast.LENGTH_SHORT).show();
-                        try{
-                           System.out.println("=========================================="+urlParse);
-                           String avd=urlParse;
-                            addParseData(name, companyname, ctcomp, rol,avd);
-                        }catch (Exception e)
-                        {
-                            Toast.makeText(Adddetails.this,"Main Error:"+e.toString(), Toast.LENGTH_SHORT).show();
-                        }
+                } else {
+                    addDatatoFirebase(name, companyname, ctcomp, rol,fyi);
                 }
             }
         });
     }
 
+    private void addDatatoFirebase(String name, String cname, String ctc, String role, Uri getp) {
+        employeeInfo.setSname(name);
+        employeeInfo.setCname(cname);
+        employeeInfo.setCtc(ctc);
+        employeeInfo.setRole(role);
+        employeeInfo.setUrlid(getp.toString());
+
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                databaseReference.child(name).setValue(employeeInfo);
+                Toast.makeText(Adddetails.this, "Data added to Database", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Adddetails.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     ProgressDialog dialog;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             dialog = new ProgressDialog(this);
             dialog.setMessage("Uploading");
+
             dialog.show();
             imageuri = data.getData();
-            Date date=new Date();
-            final String dateConverted=date.toString();
-            final String timestamp = "" +System.currentTimeMillis();
+            final String timestamp = "" + System.currentTimeMillis();
             StorageReference storageReference = FirebaseStorage.getInstance().getReference();
             final String messagePushID = timestamp;
-//            Toast.makeText(Adddetails.this, imageuri.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(Adddetails.this, imageuri.toString(), Toast.LENGTH_SHORT).show();
 
 //     Here we are uploading the pdf in firebase storage with the name of current time
-            final StorageReference filepath = storageReference.child("PlacementExperience").child(sname.getText().toString()+"_"+ messagePushID + "." + "pdf");
+            final StorageReference filepath = storageReference.child(messagePushID + "." + "pdf");
             Toast.makeText(Adddetails.this, filepath.getName(), Toast.LENGTH_SHORT).show();
             filepath.putFile(imageuri).continueWithTask(new Continuation() {
                 @Override
@@ -142,93 +139,19 @@ public class Adddetails extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 dialog.dismiss();
                                 Toast.makeText(Adddetails.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
+
                                 filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
                                         fyi=uri;
-                                        urlParse= uri.toString();
-                                        Toast.makeText(Adddetails.this, urlParse, Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             } else {
                                 dialog.dismiss();
-                                Toast.makeText(Adddetails.this, "Upload Failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Adddetails.this, "UploadedFailed", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
         }
     }
-
-    public void addParseData(String name, String cname, String ctc, String role, String getp)
-    {
-        ParseObject entity = new ParseObject("PlacedStudents");
-        entity.put("sname", name);
-        entity.put("cname", cname);
-        entity.put("ctc", ctc);
-        entity.put("role", role);
-        entity.put("year", "A string");
-        entity.put("urlid",getp);
-
-
-        // Saves the new object.
-        // Notice that the SaveCallback is totally optional!
-
-        entity.saveInBackground(e -> {
-            if (e!=null){
-                if (name.isEmpty() || cname.isEmpty() || ctc.isEmpty() || role.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Please add all the Fields", Toast.LENGTH_SHORT).show();
-                }
-                else if(getp == null )
-                {
-                    Toast.makeText(getApplicationContext(), "Please Add PDF File", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(this, "Parse Error:"+e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-                //Save was Wrong
-            }
-            else{
-                //Something went Right
-                Toast.makeText(getApplicationContext(), "Data added to Parse", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-//    private void addDatatoFirebase(String name, String cname, String ctc, String role, Uri getp) {
-//        employeeInfo.setSname(name);
-//        employeeInfo.setCname(cname);
-//        employeeInfo.setCtc(ctc);
-//        employeeInfo.setRole(role);
-//        try {
-//            employeeInfo.setUrlid(getp.toString());
-//            urlParse=getp.toString();
-//            Toast.makeText(Adddetails.this, "test case" +getp.toString(), Toast.LENGTH_SHORT).show();
-//        }
-//        catch (Exception e)
-//        {
-//
-//        }
-//
-//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (name.isEmpty() || cname.isEmpty() || ctc.isEmpty() || role.isEmpty()) {
-//                    Toast.makeText(getApplicationContext(), "Please add all the Fields", Toast.LENGTH_SHORT).show();
-//                }
-//                else if(getp == null )
-//                {
-//                    Toast.makeText(getApplicationContext(), "Please Add a PDF File", Toast.LENGTH_SHORT).show();
-//                }
-//                else{
-//                    databaseReference.child(name).setValue(employeeInfo);
-//                   // Toast.makeText(Adddetails.this, "Data added to Database", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Toast.makeText(Adddetails.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 }

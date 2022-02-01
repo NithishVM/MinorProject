@@ -21,6 +21,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".mainApp"
         android:allowBackup="true"
         android:icon="@drawable/blue_bg"
         android:label="@string/app_name"
@@ -28,20 +29,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PlacementApp">
         <activity
+            android:name=".Adddepart"
+            android:exported="true">
+
+        </activity>
+        <activity
             android:name=".Addplaced"
             android:exported="true">
 
         </activity>
         <activity
             android:name=".Addunplaced"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".AdminSettings"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".UnplacedDash"
             android:exported="false" />
@@ -50,25 +52,22 @@
             android:exported="true" />
         <activity
             android:name=".Vieweach"
-            android:exported="true" />
+            android:exported="true"></activity>
         <activity
             android:name=".Teachview"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".Adddetails"
-            android:exported="true" />
+            android:exported="true"></activity>
         <activity
             android:name=".TeacherDash"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
