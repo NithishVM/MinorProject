@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="30dp"
-                android:text="Department Dashboard"
+                android:text="Alumni and Placed Dashboard"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="24sp"
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="35dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="1dp"
                 android:clickable="true"
@@ -87,7 +87,7 @@
                 android:layout_height="130dp"
                 android:layout_below="@+id/card2"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="1dp"
                 android:onClick="viewpd"
@@ -132,107 +132,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!--            <androidx.cardview.widget.CardView-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="130dp"-->
-            <!--                android:layout_below="@+id/card2"-->
-            <!--                android:layout_marginStart="5dp"-->
-            <!--                android:layout_marginTop="1dp"-->
-            <!--                android:layout_marginEnd="5dp"-->
-            <!--                android:layout_marginBottom="0dp"-->
-            <!--                android:onClick="viewpd"-->
-            <!--                android:text="clickhere"-->
-            <!--                app:cardBackgroundColor="#fffefe"-->
-            <!--                app:cardCornerRadius="30dp"-->
-            <!--                app:cardElevation="1dp"-->
-            <!--                app:cardMaxElevation="1dp"-->
-            <!--                app:cardPreventCornerOverlap="true"-->
-            <!--                app:cardUseCompatPadding="true">-->
-
-            <!--                <ImageView-->
-            <!--                    android:layout_width="85dp"-->
-            <!--                    android:layout_height="102dp"-->
-            <!--                    android:layout_gravity="left"-->
-            <!--                    android:layout_margin="5dp"-->
-            <!--                    android:contentDescription="@string/app_name"-->
-            <!--                    android:paddingLeft="8dp"-->
-            <!--                    android:src="@drawable/writing" />-->
-
-            <!--                <TextView-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_gravity="top"-->
-            <!--                    android:layout_marginLeft="110dp"-->
-            <!--                    android:layout_marginTop="20dp"-->
-            <!--                    android:layout_marginBottom="20dp"-->
-            <!--                    android:text="Edit Placement Data"-->
-            <!--                    android:textColor="@color/black"-->
-            <!--                    android:textSize="20sp"-->
-            <!--                    android:textStyle="bold" />-->
-
-            <!--                <TextView-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_marginLeft="110dp"-->
-            <!--                    android:layout_marginTop="55dp"-->
-            <!--                    android:layout_marginBottom="1dp"-->
-            <!--                    android:text="Edit Placement Data of the Students"-->
-            <!--                    android:textColor="@color/black"-->
-            <!--                    android:textSize="16sp" />-->
-
-
-            <!--            </androidx.cardview.widget.CardView>-->
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:layout_below="@+id/card2"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="1dp"
-                android:onClick="settingAdmin"
-                android:text="clickhere"
-                app:cardBackgroundColor="#fffefe"
-                app:cardCornerRadius="30dp"
-                app:cardElevation="1dp"
-                app:cardMaxElevation="1dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true">
-
-                <ImageView
-                    android:layout_width="85dp"
-                    android:layout_height="102dp"
-                    android:layout_gravity="left"
-                    android:layout_margin="5dp"
-                    android:contentDescription="@string/app_name"
-                    android:paddingLeft="5dp"
-                    android:src="@drawable/settings_app_icon" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_marginLeft="110dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:text="Admin Settings"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="110dp"
-                    android:layout_marginTop="55dp"
-                    android:layout_marginBottom="1dp"
-                    android:text="Change Students' Placement Status"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-
-            </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

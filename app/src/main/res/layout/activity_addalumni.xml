@@ -5,26 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gray_background"
-    tools:context=".Addunplaced">
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="44dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="24dp"
-        android:gravity="left"
-        android:text="@string/unplaced_student_details"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".Addalumni">
 
     <EditText
         android:id="@+id/branch_d"
         android:layout_width="285dp"
         android:layout_height="62dp"
-        android:layout_marginStart="92dp"
+        android:layout_marginStart="96dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:foregroundGravity="center"
@@ -34,13 +21,43 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.515" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="68dp"
+        android:gravity="left"
+        android:text="Alumni Details"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/phone_d"
+        android:layout_width="285dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="96dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:inputType="phone"
+        android:textColorHint="#708090"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.653"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/email_d"
         android:layout_width="285dp"
         android:layout_height="62dp"
-        android:layout_marginStart="92dp"
+        android:layout_marginStart="96dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:foregroundGravity="center"
@@ -50,7 +67,59 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.346" />
+        app:layout_constraintVertical_bias="0.364" />
+
+    <EditText
+        android:id="@+id/name_d"
+        android:layout_width="285dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="96dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:textColorHint="#708090"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.236" />
+
+    <TextView
+        android:id="@+id/email_up1"
+        android:layout_width="93dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="236dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="right"
+        android:text="Email:"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toStartOf="@+id/email_d"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sdasd"
+        android:layout_width="73dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="center"
+        android:text="Branch:"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toStartOf="@+id/branch_d"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/name_up"
+        android:layout_width="87dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="right"
+        android:text="Name:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/name_d"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/phone_up1"
@@ -63,76 +132,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/phone_d"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.625" />
-
-    <TextView
-        android:id="@+id/sdasd"
-        android:layout_width="73dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="312dp"
-        android:layout_marginEnd="4dp"
-        android:gravity="center"
-        android:text="@string/branch"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toStartOf="@+id/branch_d"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/phone_d"
-        android:layout_width="285dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="92dp"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:foregroundGravity="center"
-        android:gravity="center"
-        android:inputType="phone"
-        android:textColorHint="#708090"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.636"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/email_up1"
-        android:layout_width="93dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="228dp"
-        android:layout_marginEnd="4dp"
-        android:gravity="right"
-        android:text="@string/email"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toStartOf="@+id/email_d"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/name_up"
-        android:layout_width="87dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="144dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="right"
-        android:text="Name:"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/name_d"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/name_d"
-        android:layout_width="285dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="92dp"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:foregroundGravity="center"
-        android:gravity="center"
-        android:inputType="textPersonName"
-        android:textColorHint="#708090"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.219" />
+        app:layout_constraintVertical_bias="0.641" />
 
     <Button
         android:id="@+id/addata"

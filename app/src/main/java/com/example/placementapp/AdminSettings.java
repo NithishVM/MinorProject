@@ -27,4 +27,15 @@ public class AdminSettings extends AppCompatActivity {
         Intent AddUnplaced=new Intent(AdminSettings.this,Addplaced.class);
         startActivity(AddUnplaced);
     }
+    public void addAlumni(View view)
+    {
+        Intent AddUnplaced=new Intent(AdminSettings.this,Addalumni.class);
+        startActivity(AddUnplaced);
+    }
+    public void addDept(View view)
+    {
+        Intent AddUnplaced=new Intent(AdminSettings.this,Adddepart.class);
+        startActivity(AddUnplaced);
+    }
+
 }
