@@ -4,13 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Objects;
 
 public class Teachview extends AppCompatActivity {
 
@@ -37,15 +31,13 @@ public class Teachview extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teachview);
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
         ProgressDialog load= new ProgressDialog(this);
         load.setMessage("Loading");
         load.show();
         Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                load.dismiss();
-            }
-        }, 3000);
+        handler.postDelayed(load::dismiss, 3000);
         listView = findViewById(R.id.listview);
         list = new ArrayList<>();
         name_list = new ArrayList<>();
@@ -69,21 +61,18 @@ public class Teachview extends AppCompatActivity {
 
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getBaseContext(), Vieweach.class);
-                String testAd= adapterView.getItemAtPosition(i).toString();
-                intent.putExtra("stud_name", testAd);
-                startActivity(intent);
-                Toast.makeText(getApplicationContext(), "Clicked on "+testAd,Toast.LENGTH_SHORT).show();
-            }
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            Intent intent = new Intent(getBaseContext(), Vieweach.class);
+            String testAd= adapterView.getItemAtPosition(i).toString();
+            intent.putExtra("stud_name", testAd);
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Clicked on "+testAd,Toast.LENGTH_SHORT).show();
         });
     }
 
     public  void  getInData()
     {
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+        ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
         for(int i=0;i< name_list.size(); i++) {
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("StudentDetails").child(name_list.get(i));

@@ -1,7 +1,6 @@
 package com.example.placementapp;
 
 import android.app.Application;
-
 import com.parse.Parse;
 
 public class mainApp extends Application {

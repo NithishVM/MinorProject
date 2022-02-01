@@ -12,6 +12,8 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.Objects;
+
 public class Adddepart extends AppCompatActivity {
     private EditText phone_up,email_up,student_name,branch,desg;
 
@@ -19,7 +21,7 @@ public class Adddepart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adddepart);
-
+        Objects.requireNonNull(getSupportActionBar()).hide();
         phone_up = findViewById(R.id.phone_d);
         email_up = findViewById(R.id.email_d);
         student_name = findViewById(R.id.name_d);

@@ -13,6 +13,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
     EditText editText1,editText2;
     Button login,signup;
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
         editText1=findViewById(R.id.editTextTextPersonName);
         editText2 = findViewById(R.id.editTextTextPersonName2);
         login=findViewById(R.id.login);
@@ -33,10 +37,49 @@ public class MainActivity extends AppCompatActivity {
             ParseUser.logInInBackground(name1, pl, (user, e) -> {
                 if(user != null)
                 {
-                    Toast.makeText(MainActivity.this, "Welcome to the App", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(MainActivity.this,TeacherDash.class);
-                    startActivity(intent);
-                    finish();
+                    ParseQuery<ParseObject> q1 = ParseQuery.getQuery("UnplacedStudents");
+                    ParseQuery<ParseObject> q2 = ParseQuery.getQuery("PlacedStudentData");
+                    ParseQuery<ParseObject> q3 = ParseQuery.getQuery("Department");
+                    ParseQuery<ParseObject> q4 = ParseQuery.getQuery("Alumni");
+                    String emlS = "email";
+                    String emlL=user.getEmail();
+                    try {
+                        if(q1.whereEqualTo(emlS,emlL).count() == 1)
+                        {
+                            q1.getFirstInBackground((object, ef) ->{
+                                {
+                                    Toast.makeText(MainActivity.this, "Welcome to the App", Toast.LENGTH_SHORT).show();
+                                    Intent intent=new Intent(MainActivity.this,UnplacedDash.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            } );
+                        }
+                        else if(q2.whereEqualTo(emlS,emlL).count() == 1)
+                        {
+                            q2.getFirstInBackground((object, ef) -> {});
+                        }
+                        else if(q4.whereEqualTo(emlS,emlL).count() == 1)
+                        {
+                            q4.getFirstInBackground((object, ef) -> {});
+                        }
+                        else if(q3.whereEqualTo(emlS,emlL).count() == 1)
+                        {
+                            q3.getFirstInBackground((object, ef) ->
+                                    {
+                                        Toast.makeText(MainActivity.this, "Welcome to the App", Toast.LENGTH_SHORT).show();
+                                        Intent intent=new Intent(MainActivity.this,TeacherDash.class);
+                                        startActivity(intent);
+                                        finish();
+                                    });
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(), "Email Id is not in Database", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (ParseException parseException) {
+                        parseException.printStackTrace();
+                    }
                 }
                 else{
                     Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();

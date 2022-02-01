@@ -27,6 +27,8 @@ import com.google.firebase.database.annotations.Nullable;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.Objects;
+
 public class Adddetails extends AppCompatActivity {
     private EditText ctc, role, sname, cname;
     private Button sendDatabtn;
@@ -44,6 +46,7 @@ public class Adddetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adddetails);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         upload = findViewById(R.id.imageButton);
         upload.setOnClickListener(new View.OnClickListener() {
