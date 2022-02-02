@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -32,13 +31,6 @@ public class MainActivity extends AppCompatActivity {
         login=findViewById(R.id.login);
         signup=findViewById(R.id.signup);
 
-        Parse.initialize(new Parse.Configuration.Builder(this)
-                .applicationId(getString(R.string.back4app_app_id))
-                .clientKey(getString(R.string.back4app_client_key))
-                .server(getString(R.string.back4app_server_url))
-                .build()
-        );
-
         login.setOnClickListener(v -> {
             String name1= editText1.getText().toString();
             String pl=editText2.getText().toString();
@@ -56,11 +48,7 @@ public class MainActivity extends AppCompatActivity {
                         {
                             q1.getFirstInBackground((object, ef) ->{
                                 {
-                                    try {
-                                        Toast.makeText(MainActivity.this, "Welcome to the app " + q1.get("sname").toString(), Toast.LENGTH_SHORT).show();
-                                    } catch (ParseException parseException) {
-                                        parseException.printStackTrace();
-                                    }
+                                    Toast.makeText(MainActivity.this, "Welcome to the App", Toast.LENGTH_SHORT).show();
                                     Intent intent=new Intent(MainActivity.this,UnplacedDash.class);
                                     startActivity(intent);
                                     finish();
@@ -69,37 +57,18 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else if(q2.whereEqualTo(emlS,emlL).count() == 1)
                         {
-                            q2.getFirstInBackground((object, ef) -> {
-                                try {
-                                    Toast.makeText(MainActivity.this, "Welcome to the app " + q1.get("sname").toString(), Toast.LENGTH_SHORT).show();
-                                } catch (ParseException parseException) {
-                                    parseException.printStackTrace();
-                                }                                Intent intent=new Intent(MainActivity.this,Alumnidash.class);
-                                startActivity(intent);
-                                finish();
-                            });
+                            q2.getFirstInBackground((object, ef) -> {});
                         }
                         else if(q4.whereEqualTo(emlS,emlL).count() == 1)
                         {
-                            q4.getFirstInBackground((object, ef) -> {
-                                try {
-                                    Toast.makeText(MainActivity.this, "Welcome to the app " + q1.get("sname").toString(), Toast.LENGTH_SHORT).show();
-                                } catch (ParseException parseException) {
-                                    parseException.printStackTrace();
-                                }                                Intent intent=new Intent(MainActivity.this,Alumnidash.class);
-                                startActivity(intent);
-                                finish();
-                            });
+                            q4.getFirstInBackground((object, ef) -> {});
                         }
                         else if(q3.whereEqualTo(emlS,emlL).count() == 1)
                         {
                             q3.getFirstInBackground((object, ef) ->
                                     {
-                                        try {
-                                            Toast.makeText(MainActivity.this, "Welcome to the app " + q1.get("name").toString(), Toast.LENGTH_SHORT).show();
-                                        } catch (ParseException parseException) {
-                                            parseException.printStackTrace();
-                                        }                                        Intent intent=new Intent(MainActivity.this,TeacherDash.class);
+                                        Toast.makeText(MainActivity.this, "Welcome to the App", Toast.LENGTH_SHORT).show();
+                                        Intent intent=new Intent(MainActivity.this,TeacherDash.class);
                                         startActivity(intent);
                                         finish();
                                     });
@@ -122,10 +91,9 @@ public class MainActivity extends AppCompatActivity {
             if(editText1.getText().toString().endsWith("@rvce.edu.in"))
             {
                 try {
-                    ParseUser.logOut();
                     getSignUp();
-                } catch (ParseException epl) {
-                    Toast.makeText(getApplicationContext(), epl.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
             }
             else
@@ -171,10 +139,10 @@ public class MainActivity extends AppCompatActivity {
         user.setUsername(name1);
         user.setPassword(pl);
         user.setEmail(name1);
-        user.signUpInBackground(ej -> {
-            if (ej != null) {
+        user.signUpInBackground(e -> {
+            if (e != null) {
                 ParseUser.logOut();
-                Toast.makeText(MainActivity.this, ej.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
             else
             {

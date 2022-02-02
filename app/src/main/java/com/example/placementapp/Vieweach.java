@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,17 +17,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Objects;
-
 public class Vieweach extends AppCompatActivity {
-    TextView text1,t2,t3,t4;
+    TextView text1,t2,t3,t4,t5;
     Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vieweach);
-        Objects.requireNonNull(getSupportActionBar()).hide();
-
         text1= findViewById(R.id.datatext);
         t2= findViewById(R.id.datatext2);
         t3= findViewById(R.id.datatext3);

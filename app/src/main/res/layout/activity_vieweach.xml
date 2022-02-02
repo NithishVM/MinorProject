@@ -53,7 +53,7 @@
     <TextView
         android:id="@+id/datatext"
         android:layout_width="225dp"
-        android:layout_height="wrap_content"
+        android:layout_height="49dp"
         android:layout_marginTop="148dp"
         android:layout_marginEnd="4dp"
         android:gravity="left"
@@ -98,6 +98,7 @@
         android:layout_marginEnd="4dp"
         android:clickable="true"
         android:gravity="left"
+        android:onClick="pdfMeth"
         android:text="TextView"
         android:textColor="#131010"
         android:textSize="28sp"
