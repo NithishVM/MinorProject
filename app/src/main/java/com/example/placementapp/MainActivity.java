@@ -122,9 +122,10 @@ public class MainActivity extends AppCompatActivity {
             if(editText1.getText().toString().endsWith("@rvce.edu.in"))
             {
                 try {
+                    ParseUser.logOut();
                     getSignUp();
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                } catch (ParseException epl) {
+                    Toast.makeText(getApplicationContext(), epl.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
             else
@@ -170,10 +171,10 @@ public class MainActivity extends AppCompatActivity {
         user.setUsername(name1);
         user.setPassword(pl);
         user.setEmail(name1);
-        user.signUpInBackground(e -> {
-            if (e != null) {
+        user.signUpInBackground(ej -> {
+            if (ej != null) {
                 ParseUser.logOut();
-                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, ej.getMessage(), Toast.LENGTH_SHORT).show();
             }
             else
             {
