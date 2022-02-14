@@ -8,9 +8,8 @@
     tools:context=".AdminSettings">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/add_al_card"
         android:layout_width="363dp"
-        android:layout_height="146dp"
+        android:layout_height="wrap_content"
         android:clickable="true"
         android:onClick="addAlumni"
         app:cardBackgroundColor="#fffefe"
@@ -23,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_up_card"
-        app:layout_constraintVertical_bias="0.902">
+        app:layout_constraintVertical_bias="0.6">
 
         <ImageView
             android:layout_width="92dp"
@@ -47,8 +46,8 @@
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="214dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="110dp"
             android:layout_marginTop="55dp"
             android:layout_marginBottom="1dp"
@@ -58,9 +57,8 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/add_d_card"
         android:layout_width="363dp"
-        android:layout_height="146dp"
+        android:layout_height="wrap_content"
         android:clickable="true"
         android:onClick="addDept"
         app:cardBackgroundColor="#fffefe"
@@ -73,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_up_card"
-        app:layout_constraintVertical_bias="0.489">
+        app:layout_constraintVertical_bias="0.3">
 
         <ImageView
             android:layout_width="92dp"
@@ -98,7 +96,7 @@
 
         <TextView
             android:layout_width="214dp"
-            android:layout_height="40dp"
+            android:layout_height="36dp"
             android:layout_marginLeft="110dp"
             android:layout_marginTop="55dp"
             android:layout_marginBottom="1dp"
@@ -110,7 +108,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/add_up_card"
         android:layout_width="363dp"
-        android:layout_height="146dp"
+        android:layout_height="wrap_content"
         android:clickable="true"
         android:onClick="addupdata"
         app:cardBackgroundColor="#fffefe"
@@ -159,12 +157,11 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/add_ps_card"
         android:layout_width="363dp"
-        android:layout_height="146dp"
+        android:layout_height="wrap_content"
         android:clickable="true"
-        app:cardBackgroundColor="#fffefe"
         android:onClick="AddPlaced"
+        app:cardBackgroundColor="#fffefe"
         app:cardCornerRadius="30dp"
         app:cardElevation="1dp"
         app:cardMaxElevation="1dp"
@@ -174,7 +171,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_up_card"
-        app:layout_constraintVertical_bias="0.064">
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:layout_width="92dp"

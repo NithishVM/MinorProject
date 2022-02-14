@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Objects;
+
 import javax.net.ssl.HttpsURLConnection;
 
 import android.os.Bundle;
@@ -20,6 +22,7 @@ public class Pdfactivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdfactivity);
+        Objects.requireNonNull(getSupportActionBar()).hide();
         pdfView = findViewById(R.id.Pdfview);
         Intent intent=getIntent();
         String urlname=intent.getStringExtra("urlval");

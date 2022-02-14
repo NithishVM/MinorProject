@@ -6,7 +6,6 @@ plugins {
 android {
 
     compileSdk 31
-    buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "com.example.placementapp"
         minSdk 21

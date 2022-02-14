@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../.gradle/caches/transforms-3/86058889edce206a8998aeadd66a1fc8/transformed/browser-1.0.0/res/layout/browser_actions_context_menu_row.xml" value="0.2616120218579235" />
         <entry key="..\:/Users/virup/AndroidStudioProjects/PlacementApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/virup/AndroidStudioProjects/PlacementApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/virup/AndroidStudioProjects/PlacementApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.14635416666666667" />
@@ -16,20 +17,20 @@
         <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.29907407407407405" />
         <entry key="app/src/main/res/drawable/rounded_edittext.xml" value="0.29907407407407405" />
         <entry key="app/src/main/res/drawable/sh_notification.xml" value="0.29907407407407405" />
-        <entry key="app/src/main/res/layout/activity_addalumni.xml" value="0.15" />
-        <entry key="app/src/main/res/layout/activity_adddepart.xml" value="0.15" />
-        <entry key="app/src/main/res/layout/activity_adddetails.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/activity_addplaced.xml" value="0.12949502677888294" />
-        <entry key="app/src/main/res/layout/activity_addunplaced.xml" value="0.12949502677888294" />
+        <entry key="app/src/main/res/layout/activity_addalumni.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_adddepart.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_adddetails.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_addplaced.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_addunplaced.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_admin_settings.xml" value="0.19433060109289618" />
         <entry key="app/src/main/res/layout/activity_alumnidash.xml" value="0.25234375" />
         <entry key="app/src/main/res/layout/activity_app.xml" value="0.31431159420289856" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_pdfactivity.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_teacher_dash.xml" value="0.3218390804597701" />
-        <entry key="app/src/main/res/layout/activity_teachview.xml" value="0.2978723404255319" />
+        <entry key="app/src/main/res/layout/activity_teachview.xml" value="0.2494061757719715" />
         <entry key="app/src/main/res/layout/activity_unplaced_dash.xml" value="0.3229166666666667" />
-        <entry key="app/src/main/res/layout/activity_vieweach.xml" value="0.2484375" />
+        <entry key="app/src/main/res/layout/activity_vieweach.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_viewteach.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/menu/menu_viewteach.xml" value="0.19791666666666666" />

@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class Vieweach extends AppCompatActivity {
     TextView text1,t2,t3,t4,t5;
     Button button;
@@ -24,6 +26,8 @@ public class Vieweach extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vieweach);
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
         text1= findViewById(R.id.datatext);
         t2= findViewById(R.id.datatext2);
         t3= findViewById(R.id.datatext3);

@@ -57,11 +57,21 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else if(q2.whereEqualTo(emlS,emlL).count() == 1)
                         {
-                            q2.getFirstInBackground((object, ef) -> {});
+                            q2.getFirstInBackground((object, ef) -> {
+                                Toast.makeText(MainActivity.this, "Welcome to the App", Toast.LENGTH_SHORT).show();
+                                Intent intent=new Intent(MainActivity.this,Alumnidash.class);
+                                startActivity(intent);
+                                finish();
+                            });
                         }
                         else if(q4.whereEqualTo(emlS,emlL).count() == 1)
                         {
-                            q4.getFirstInBackground((object, ef) -> {});
+                            q4.getFirstInBackground((object, ef) -> {
+                                Toast.makeText(MainActivity.this, "Welcome to the App", Toast.LENGTH_SHORT).show();
+                                Intent intent=new Intent(MainActivity.this,Alumnidash.class);
+                                startActivity(intent);
+                                finish();
+                            });
                         }
                         else if(q3.whereEqualTo(emlS,emlL).count() == 1)
                         {
@@ -88,9 +98,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         signup.setOnClickListener(view -> {
-            if(editText1.getText().toString().endsWith("@rvce.edu.in"))
+            if(editText1.getText().toString().endsWith("@rvce.edu.in") ||editText1.getText().toString().endsWith("@gmail.com") )
             {
                 try {
+                    ParseUser.logOut();
                     getSignUp();
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -146,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else
             {
+                ParseUser.logOut();
                 Toast.makeText(getApplicationContext(), "Signed in as "+kml, Toast.LENGTH_SHORT).show();
             }
         });

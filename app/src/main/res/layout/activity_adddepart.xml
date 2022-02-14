@@ -11,7 +11,7 @@
         android:id="@+id/branch_d"
         android:layout_width="285dp"
         android:layout_height="62dp"
-        android:layout_marginStart="108dp"
+        android:layout_marginStart="104dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:foregroundGravity="center"
@@ -21,7 +21,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.484" />
 
     <EditText
         android:id="@+id/phone_d"
@@ -37,13 +37,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.635"
+        app:layout_constraintVertical_bias="0.62"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/phone_up"
-        android:layout_width="96dp"
-        android:layout_height="39dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:gravity="center"
         android:text="Designation:"
@@ -51,7 +50,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/desg_d"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.763" />
+        app:layout_constraintVertical_bias="0.751" />
 
     <EditText
         android:id="@+id/email_d"
@@ -67,12 +66,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.343" />
+        app:layout_constraintVertical_bias="0.346" />
 
     <TextView
-        android:id="@+id/phone_up1"
-        android:layout_width="71dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:gravity="center"
         android:text="Phone:"
@@ -80,14 +78,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/phone_d"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.624" />
+        app:layout_constraintVertical_bias="0.612" />
 
     <TextView
-        android:id="@+id/name_up"
-        android:layout_width="87dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="4dp"
         android:gravity="right"
         android:text="Name:"
         android:textSize="20sp"
@@ -98,7 +95,7 @@
         android:id="@+id/name_d"
         android:layout_width="285dp"
         android:layout_height="62dp"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="104dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:foregroundGravity="center"
@@ -124,14 +121,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.771"
+        app:layout_constraintVertical_bias="0.763"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/email_up1"
-        android:layout_width="93dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="224dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="248dp"
         android:layout_marginEnd="4dp"
         android:gravity="right"
         android:text="Email:"
@@ -140,10 +136,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/sdasd"
-        android:layout_width="73dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="328dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="340dp"
         android:layout_marginEnd="4dp"
         android:gravity="center"
         android:text="Branch:"
@@ -152,11 +147,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="72dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="60dp"
         android:gravity="start"
         android:text="@string/faculty_details"
         android:textColor="@color/black"

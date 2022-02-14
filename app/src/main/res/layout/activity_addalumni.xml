@@ -21,13 +21,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.515" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="72dp"
         android:layout_marginEnd="68dp"
         android:gravity="left"
         android:text="Alumni Details"
@@ -50,7 +49,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.653"
+        app:layout_constraintVertical_bias="0.621"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
@@ -86,10 +85,9 @@
         app:layout_constraintVertical_bias="0.236" />
 
     <TextView
-        android:id="@+id/email_up1"
-        android:layout_width="93dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="236dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="256dp"
         android:layout_marginEnd="4dp"
         android:gravity="right"
         android:text="Email:"
@@ -98,10 +96,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/sdasd"
-        android:layout_width="73dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="320dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="352dp"
         android:layout_marginEnd="4dp"
         android:gravity="center"
         android:text="Branch:"
@@ -110,11 +107,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/name_up"
-        android:layout_width="87dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="172dp"
+        android:layout_marginEnd="4dp"
         android:gravity="right"
         android:text="Name:"
         android:textSize="20sp"
@@ -122,9 +118,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/phone_up1"
-        android:layout_width="71dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:gravity="center"
         android:text="Phone:"
@@ -132,7 +127,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/phone_d"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.641" />
+        app:layout_constraintVertical_bias="0.614" />
 
     <Button
         android:id="@+id/addata"

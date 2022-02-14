@@ -5,13 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Objects;
 
 public class Teachview extends AppCompatActivity {
 
@@ -32,11 +29,12 @@ public class Teachview extends AppCompatActivity {
     ArrayList<String> names;
     ArrayList<String> list;
     ArrayList<String> name_list;
-
+    StudentDetails studentDetails;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teachview);
+        Objects.requireNonNull(getSupportActionBar()).hide();
         ProgressDialog load= new ProgressDialog(this);
         load.setMessage("Loading");
         load.show();
